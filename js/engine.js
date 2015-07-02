@@ -47,7 +47,6 @@ var Engine = (function(global) {
          */
         update(dt);
         render();
-
         /* Set our lastTime variable which is used to determine the time delta
          * for the next time this function is called.
          */
@@ -81,6 +80,8 @@ var Engine = (function(global) {
     function update(dt) {
         updateEntities(dt);
         // checkCollisions();
+        reset();
+
     }
 
     /* This is called by the update function  and loops through all of the
@@ -136,7 +137,6 @@ var Engine = (function(global) {
             }
         }
 
-
         renderEntities();
     }
 
@@ -160,7 +160,10 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        if(player.y < -15){
+            player = new Player(200, 400);
+            player.render();
+        }
     }
 
     /* Go ahead and load all of the images we know we're going to need to
